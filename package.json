@@ -1,0 +1,49 @@
+{
+  "name": "@stakekit/fluid-animation",
+  "private": false,
+  "version": "0.0.1",
+  "type": "module",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md",
+    "!**/.*"
+  ],
+  "author": "Petar Todorovic <petar@omni.app> (https://github.com)",
+  "license": "MIT",
+  "keywords": [
+    "stakekit",
+    "fluid-animation"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && yarn build:types",
+    "build:types": "tsc --emitDeclarationOnly && mv dist/types/index.d.ts dist/index.d.ts && rm -rf dist/types",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "@types/three": "^0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "simplex-noise": "^4.0.1",
+    "three": "^0.161.0"
+  }
+}
