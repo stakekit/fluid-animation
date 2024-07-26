@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #output {
+        width: 200px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="200" height="200"></canvas>
+    <div id="output"></div>
+
+    <script>
+      // CSS linear gradient definition
+      var linearGradientCSS =
+        "linear-gradient(90deg, #FFC21B, #B1A5B9, #F46FC8, #FF5F25, #6D05F3)";
+
+      // Function to convert linear gradient CSS to base64 image
+      function cssToBase64(css) {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var gradient = ctx.createLinearGradient(
+          0,
+          canvas.height / 2,
+          canvas.width,
+          canvas.height / 2
+        );
+
+        // Parse the gradient stops from CSS
+        var stops = css.match(/#[0-9A-Fa-f]+/g);
+
+        // Add stops to the gradient
+        stops.forEach(function (stop, index) {
+          gradient.addColorStop(index / (stops.length - 1), stop);
+        });
+
+        // Fill the canvas with the gradient
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Convert the canvas to base64
+        var base64Image = canvas.toDataURL();
+
+        return base64Image;
+      }
+
+      // Use the function to convert and display the base64 image
+      var base64Image = cssToBase64(linearGradientCSS);
+      var outputDiv = document.getElementById("output");
+      outputDiv.innerHTML =
+        '<img src="' + base64Image + '" alt="Gradient Image">';
+    </script>
+  </body>
+</html>
